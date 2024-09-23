@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Control de LED</title>
+  <title>Control del ESP32</title>
 </head>
 <body>
-  <h1>Controlar LED</h1>
+  <h1>Controlar LED desde la web</h1>
   <button onclick="toggleLED('on')">Encender LED</button>
   <button onclick="toggleLED('off')">Apagar LED</button>
+  <br><br>
+  <button onclick="getSensorData()">Obtener datos del sensor</button>
 
   <script>
-    const ESP32_IP = 'http://192.168.100.27';  // Cambia por la IP de tu ESP32
+    const ESP32_IP = 'http://192.168.100.27';  // Cambia por la IP local del ESP32
 
     function toggleLED(action) {
       fetch(`${ESP32_IP}/led/${action}`)
         .then(response => response.text())
         .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getSensorData() {
+      fetch(`${ESP32_IP}/sensor`)
+        .then(response => response.text())
+        .then(data => alert(data))
         .catch(error => console.error('Error:', error));
     }
   </script>
