@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroTech</title>
+  <title>Control de LED</title>
 </head>
 <body>
-    <h1>
-        AgroTech
-    </h1>
-    <h2>pagina basica</h2>
+  <h1>Controlar LED</h1>
+  <button onclick="toggleLED('on')">Encender LED</button>
+  <button onclick="toggleLED('off')">Apagar LED</button>
+
+  <script>
+    const ESP32_IP = 'http://192.168.100.27';  // Cambia por la IP de tu ESP32
+
+    function toggleLED(action) {
+      fetch(`${ESP32_IP}/led/${action}`)
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
 </body>
 </html>
