@@ -9,7 +9,7 @@
   <button onclick="toggleLED('off')">Apagar LED</button>
 
   <script>
-    const ESP32_IP = 'http://192.168.100.27';  // Cambia por la IP de tu ESP32
+    const ESP32_IP = '192.168.100.27';  // Cambia por la IP de tu ESP32
 
     function toggleLED(action) {
       fetch(`${ESP32_IP}/led/${action}`)
